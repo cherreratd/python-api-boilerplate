@@ -9,9 +9,20 @@ pre-requirements:
 	@scripts/pre-requirements.sh
 
 .PHONY: local-setup
-local-setup: pre-requirements ## Sets up the local environment (e.g. install git hooks)
+local-setup: pre-requirements ## Sets up the local environment (e.g. install git hooks and agent symlinks)
 	scripts/local-setup.sh
 	make install
+
+.PHONY: generate-agent-symlinks
+generate-agent-symlinks: generate-claude-symlinks generate-cursor-symlinks ## Generate all agent skill symlinks (.claude, .cursor)
+
+.PHONY: generate-claude-symlinks
+generate-claude-symlinks: ## Generate .claude/skills symlink
+	scripts/generate-claude-symlinks.sh
+
+.PHONY: generate-cursor-symlinks
+generate-cursor-symlinks: ## Generate .cursor/skills symlink
+	scripts/generate-cursor-symlinks.sh
 
 .PHONY: build
 build: pre-requirements ## Install the app packages

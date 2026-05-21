@@ -163,3 +163,8 @@ cython_debug/
 #.idea/
 
 pyrightconfig.json
+
+# Generated agent symlinks (created by make local-setup)
+CLAUDE.md
+.claude/skills
+.cursor/skills

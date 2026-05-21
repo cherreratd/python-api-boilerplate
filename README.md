@@ -1,69 +1,49 @@
-# FastAPI Boilerplate ![status](https://github.com/pmareke/fastapi-boilerplate/actions/workflows/app.yml/badge.svg)
+# FastAPI Boilerplate
 
-- This repository is meant to be used as a fast starter point.
-- The Python version is the 3.12.8.
-- The project has configured a [Github Action](https://github.com/pmareke/fastapi-boilerplate/actions) which runs on every push to the `main` branch.
-- The project has a `Dockerfile` ready to use to deploy the app in production.
+Fast starter point for Python APIs using FastAPI, Clean Architecture, and good testing practices.
+
+- Python 3.12.8 managed with [uv](https://docs.astral.sh/uv).
+- Dockerfile ready for production.
+- GitHub Actions CI on every push to `main`.
 
 ## Requirements
 
-- You only need to have [uv](https://docs.astral.sh/uv) installed.
-- In order to work in the project you need to activate the **virtual environment**, you can do it:
-    - Manually with the following command `source .venv/bin/activate`.
-    - Automatically with [pyautoenv](https://github.com/hsaunders1904/pyautoenv).
+Only [uv](https://docs.astral.sh/uv) is required.
 
-## Folder structure
+Activate the virtual environment manually (`source .venv/bin/activate`) or automatically with [pyautoenv](https://github.com/hsaunders1904/pyautoenv).
 
-- There is a `tests` folder with the tests files.
-    - The `unit` folder contains the unit tests, also known as [F.I.R.S.T](https://dzone.com/articles/writing-your-first-unit-tests#:~:text=First%20class%20developers%20write%20their,self%2Dvalidating%2C%20and%20timely.&text=Unit%20tests%20are%20required%20to%20test%20singular%20sections%20of%20code.).
-    - The `integration` folder contains the tests that will validate the connection between our app and the external services.
-    - The `acceptance` folder contains the tests that validate the app behavior from the outside.
-- The production code goes inside the `src` folder.
-    - The `delivery` folder contains the `API` logic.
-    - The `domain` folder contains the domain classes of the app.
-    - The `infrastructure` folder contains the classes that interact with the external services.
-    - The `use_cases` folder contains the business logic.
-    - The `common` folder contains the shared logic.
-- Inside the `scripts` folder you can find the git hooks files.
+## Quick start
 
-## Project commands
+```bash
+make local-setup   # install git hooks, dependencies, and agent symlinks
+source .venv/bin/activate
+make dev           # start development server
+```
 
-The project uses [Makefiles](https://www.gnu.org/software/make/manual/html_node/Introduction.html) to run the most common tasks:
+## Commands
 
-- `add-package package=XXX`: Installs the package XXX in the app, ex: `make install package=requests`.
-- `build` : Builds the app using the Dockerfile.
-- `check-typing`: Runs a static analyzer over the code in order to find issues.
-- `check-format`: Checks the code format.
-- `check-lint`: Checks the code style.
-- `checks`: Runs all the checks.
-- `coverage` : Generates the coverage report.
-- `dev`: Runs the app in development mode.
-- `format`: Formats the code.
-- `lint`: Lints the code.
-- `help` : Shows this help.
-- `install`: Installs the app packages.
-- `local-setup`: Sets up the local environment (e.g. install git hooks).
-- `run`: Runs the app in production mode.
-- `test`: Run all the tests.
-- `update`: Updates the app packages.
-- `watch`: Run all the tests in watch mode.
+Run `make help` to see all available commands. Most common:
 
-**Important: Please run the `make local-setup` command before starting with the code.**
+```bash
+make test          # unit + integration + acceptance
+make checks        # lint + format + type check
+make coverage      # HTML coverage report
+```
 
-_In order to create a commit you have to pass the pre-commit phase which runs the check and test commands._
+## Tools
 
-## Packages
+| Area | Tool |
+|---|---|
+| Package manager | [uv](https://docs.astral.sh/uv) |
+| Web framework | [FastAPI](https://fastapi.tiangolo.com) |
+| Testing | [pytest](https://docs.pytest.org) + [expects](https://expects.readthedocs.io) + [doublex](https://pypi.org/project/doublex-expects/) |
+| Linting & formatting | [ruff](https://docs.astral.sh/ruff) |
+| Type checking | [ty](https://github.com/astral-sh/ty) |
 
-This project uses [uv](https://docs.astral.sh/uv) as the package manager.
+## AI agent tooling
 
-### Testing
+This project is set up for agentic development:
 
-- [pytest](https://docs.pytest.org/en/7.1.x/contents.html): Testing runner.
-- [expects](https://expects.readthedocs.io/en/stable/): An expressive and extensible TDD/BDD assertion library for Python.
-- [doublex](https://pypi.org/project/doublex-expects/): A powerful test doubles framework for Python.
-
-### Code style
-
-- [ty](https://github.com/astral-sh/ty): A static type checker.
-- [ruff](https://docs.astral.sh/ruff/installation/): A Python linter and formatter.
-
+- **`AGENTS.md`** — shared context file read by Claude Code, OpenAI Codex, Cursor, and other agents.
+- **`docs/`** — granular convention docs (architecture, testing, code style). Agents load only what's relevant to each task.
+- **`.agents/skills/`** — reusable skills (`create-doc`, `kanban-board`, `repo-status`). Linked automatically to each agent's folder by `make local-setup`.
