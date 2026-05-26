@@ -17,7 +17,7 @@ class TestHelloController:
         with Mimic(Stub, SayHelloCommandHandler) as self.handler:
             exception = SayHelloCommandHandlerException(self.ERROR_MESSAGE)
             self.handler.execute(ANY_ARG).raises(exception)
-        return self.handler  # type: ignore
+        return self.handler
 
     def test_hello_controller(self) -> None:
         client = TestClient(app)

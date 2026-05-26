@@ -14,7 +14,7 @@ class HealthCommandResponse(CommandResponse):
         return True
 
 
-class HealthCommandHandler(CommandHandler):
+class HealthCommandHandler(CommandHandler[HealthCommand, HealthCommandResponse]):
     def __init__(self, _logger: Logger = logger) -> None:
         self._logger = _logger
 

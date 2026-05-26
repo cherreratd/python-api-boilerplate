@@ -2,7 +2,7 @@
 #            BUILDER              #
 ###################################
 
-FROM python:3.12.8-alpine AS builder
+FROM python:3.14-alpine AS builder
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
@@ -17,7 +17,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 #            RUNTIME              #
 ###################################
 
-FROM python:3.12.8-alpine
+FROM python:3.14-alpine
 
 ENV PATH="/code/.venv/bin:$PATH"
 

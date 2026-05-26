@@ -14,7 +14,7 @@ class CommandResponse(ABC):
         raise NotImplementedError
 
 
-class CommandHandler(ABC):
+class CommandHandler[C: Command, CR: CommandResponse](ABC):
     @abstractmethod
-    def execute(self, command: Command) -> CommandResponse:
+    def execute(self, command: C) -> CR:
         raise NotImplementedError

@@ -23,7 +23,7 @@ class SayHelloCommandResponse(CommandResponse):
         return f"Hello, {self.name}!"
 
 
-class SayHelloCommandHandler(CommandHandler):
+class SayHelloCommandHandler(CommandHandler[SayHelloCommand, SayHelloCommandResponse]):
     def __init__(self, hello_client: HelloClient, _logger: Logger = logger) -> None:
         self._hello_client = hello_client
         self._logger = _logger

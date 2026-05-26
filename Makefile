@@ -34,8 +34,8 @@ up: pre-requirements build ## Run the app inside docker
 
 .PHONY: install
 install: pre-requirements ## Install the app packages
-	uv python install 3.12.8
-	uv python pin 3.12.8
+	uv python install 3.14.4
+	uv python pin 3.14.4
 	uv sync --no-install-project
 
 .PHONY: update

@@ -2,7 +2,7 @@
 
 Fast starter point for Python APIs using FastAPI, Clean Architecture, and good testing practices.
 
-- Python 3.12.8 managed with [uv](https://docs.astral.sh/uv).
+- Python 3.14.4 managed with [uv](https://docs.astral.sh/uv).
 - Dockerfile ready for production.
 - GitHub Actions CI on every push to `main`.
 
