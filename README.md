@@ -1,6 +1,6 @@
 # FastAPI Boilerplate
 
-Fast starter point for Python APIs using FastAPI, Clean Architecture, and good testing practices.
+Fast starter point for Python APIs using FastAPI, Clean Architecture, and good testing practices. Based on [pmareke/fastapi-boilerplate](https://github.com/pmareke/fastapi-boilerplate).
 
 - Python 3.14.4 managed with [uv](https://docs.astral.sh/uv).
 - Dockerfile ready for production.
